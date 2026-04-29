@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Easy Mall</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f8f8f8;color:#333;}
+.header{background:#222;color:#fff;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99;}
+.logo{font-size:24px;font-weight:bold;}
+.lang-box{display:flex;gap:10px;}
+.lang-btn{padding:5px 10px;background:#444;border:none;color:#fff;border-radius:4px;cursor:pointer;}
+.lang-btn:hover{background:#ff6700;}
+.banner{background:linear-gradient(45deg,#ff6700,#ff9500);color:#fff;text-align:center;padding:40px 20px;}
+.banner h2{font-size:28px;margin-bottom:10px;}
+.container{max-width:1200px;margin:30px auto;padding:0 20px;}
+.title{font-size:22px;margin:30px 0 15px;border-left:5px solid #ff6700;padding-left:10px;}
+.product-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;}
+.product-card{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px #00000015;}
+.product-card img{width:100%;height:200px;object-fit:cover;}
+.product-info{padding:15px;}
+.product-name{font-size:16px;margin-bottom:8px;}
+.product-price{color:red;font-size:18px;font-weight:bold;margin-bottom:10px;}
+.add-cart{width:100%;padding:8px;background:#ff6700;color:#fff;border:none;border-radius:4px;cursor:pointer;}
+.add-cart:hover{background:#e05a00;}
+.cart-icon{position:fixed;top:80px;right:20px;background:#ff6700;color:#fff;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;z-index:98;}
+.cart-num{position:absolute;top:-5px;right:-5px;background:red;border-radius:50%;width:20px;height:20px;font-size:12px;display:flex;align-items:center;justify-content:center;}
+.whatsapp-float{position:fixed;bottom:30px;right:20px;z-index:999;}
+.whatsapp-float a{display:block;background:#25D366;color:#fff;width:60px;height:60px;border-radius:50%;text-align:center;line-height:60px;font-size:30px;text-decoration:none;box-shadow:0 4px 12px #0003;}
+.footer{text-align:center;padding:30px;background:#222;color:#fff;margin-top:50px;}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">Global Easy Mall</div>
+  <div class="lang-box">
+    <button class="lang-btn" onclick="changeLang('zh')">中文</button>
+    <button class="lang-btn" onclick="changeLang('en')">English</button>
+    <button class="lang-btn" onclick="changeLang('ro')">Română</button>
+    <button class="lang-btn" onclick="changeLang('tr')">Türkçe</button>
+  </div>
+</div>
+<div class="cart-icon" onclick="openCart()">
+  🛒
+  <span class="cart-num" id="cartNum">0</span>
+</div>
+<div class="banner">
+  <h2 id="bannerTitle">全球便民商城 Global Easy Mall</h2>
+  <p id="bannerSub">衣服 | 鞋帽 | 日用百货 | 小家电 一站式采购</p >
+</div>
+<div class="container">
+  <h3 class="title" id="productTitle">热门商品</h3>
+  <div class="product-list" id="productList">
+    <div class="product-card">
+      < img src="https://via.placeholder.com/300x200" alt="商品图片">
+      <div class="product-info">
+        <div class="product-name" id="p1name">男士休闲上衣</div>
+        <div class="product-price">49.99 Lei</div>
+        <button class="add-cart" onclick="addCart('男士休闲上衣',49.99)">加入购物车</button>
+      </div>
+    </div>
+    <div class="product-card">
+      < img src="https://via.placeholder.com/300x200" alt="商品图片">
+      <div class="product-info">
+        <div class="product-name" id="p2name">百搭运动鞋</div>
+        <div class="product-price">89.99 Lei</div>
+        <button class="add-cart" onclick="addCart('百搭运动鞋',89.99)">加入购物车</button>
+      </div>
+    </div>
+    <div class="product-card">
+      < img src="https://via.placeholder.com/300x200" alt="商品图片">
+      <div class="product-info">
+        <div class="product-name" id="p3name">家用小百货套装</div>
+        <div class="product-price">29.99 Lei</div>
+        <button class="add-cart" onclick="addCart('家用小百货套装',29.99)">加入购物车</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  © 2026 Global Easy Mall 全球便民商城 | 多语言跨境商城
+</div>
+<div class="whatsapp-float">
+  <a href=" " target="_blank">💬</a >
+</div>
+<script>
+function changeLang(lang){
+  const texts = {
+    zh: {bannerTitle:"全球便民商城 Global Easy Mall",bannerSub:"衣服 | 鞋帽 | 日用百货 | 小家电 一站式采购",productTitle:"热门商品",p1name:"男士休闲上衣",p2name:"百搭运动鞋",p3name:"家用小百货套装",addCart:"加入购物车",cartEmpty:"购物车暂无商品"},
+    en: {bannerTitle:"Global Easy Mall",bannerSub:"Clothing | Shoes | Daily Goods | Home Appliances One-stop Shopping",productTitle:"Hot Products",p1name:"Men's Casual Top",p2name:"Versatile Sneakers",p3name:"Home Goods Set",addCart:"Add to Cart",cartEmpty:"Your cart is empty"},
+    ro: {bannerTitle:"Global Easy Mall",bannerSub:"Îmbrăcăminte | Încălțăminte | Bunuri de uz casnic | Aparate electrocasnice - cumpărături unice",productTitle:"Produse populare",p1name:"Tricou casual pentru bărbați",p2name:"Pantofi sport versatili",p3name:"Set bunuri casnice",addCart:"Adaugă în coș",cartEmpty:"Coșul tău este gol"},
+    tr: {bannerTitle:"Global Easy Mall",bannerSub:"Giyim | Ayakkabı | Günlük Ürünler | Ev Aletleri Tek Noktadan Alışveriş",productTitle:"Popüler Ürünler",p1name:"Erkek Rahat Üst Giyim",p2name:"Çok Yönlü Spor Ayakkabı",p3name:"Ev Gereçleri Seti",addCart:"Sepete Ekle",cartEmpty:"Sepetiniz boş"}
+  };
+  const t = texts[lang];
+  document.getElementById('bannerTitle').innerText = t.bannerTitle;
+  document.getElementById('bannerSub').innerText = t.bannerSub;
+  document.getElementById('productTitle').innerText = t.productTitle;
+  document.getElementById('p1name').innerText = t.p1name;
+  document.getElementById('p2name').innerText = t.p2name;
+  document.getElementById('p3name').innerText = t.p3name;
+  document.querySelectorAll('.add-cart').forEach((btn,i)=>btn.innerText = t.addCart);
+  document.getElementById('cartEmptyText')?.innerText = t.cartEmpty;
+}
+let cart = [];
+function addCart(name,price){
+  cart.push({name,price});
+  document.getElementById('cartNum').innerText = cart.length;
+  alert('已加入购物车：'+name);
+}
+function openCart(){
+  let list = cart.map((item,i)=>`${i+1}. ${item.name} - ${item.price} Lei`).join('\n');
+  if(!list) list = '购物车暂无商品';
+  alert('购物车列表：\n\n'+list);
+}
+</script>
+</body>
+</html>
